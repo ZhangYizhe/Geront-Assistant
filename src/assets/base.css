@@ -2,3 +2,7 @@
     --main-color:#FCBE16;
     --main-gray-color:#FAFAFA;
 }
+
+body {
+    padding-bottom: env(safe-area-inset-bottom);
+}
