@@ -1,1 +1,0 @@
-import{_ as e,u as r}from"./index-83e64193.js";const t={name:"UserView",data(){return{basicStore:r()}},mounted(){}};function s(a,o,n,c,_,i){return" 123 "}const p=e(t,[["render",s]]);export{p as default};
