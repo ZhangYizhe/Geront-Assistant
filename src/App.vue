@@ -11,23 +11,18 @@ const basicStroe = useBasicStore();
 <template>
   <NavigationBar v-if="basicStroe.showNavigationBar"/>
 
-  <section :class="['hero', basicStroe.showNavigationBar ? 'is-fullheight-with-navbar' : 'is-fullheight']">
-    <div class="hero-body">
-      <RouterView />
-    </div>
-    <div class="hero-foot" v-if="basicStroe.showTabBar">
-      <TabBar />
-    </div>
-  </section>
+  <div class="container main-canvas">
+    <RouterView />
+  </div>
+
+  <template v-if="basicStroe.showTabBar">
+    <TabBar />
+  </template>
 </template>
 
 <style scoped>
-
-.hero-body {
+.main-canvas {
   background-color: var(--main-gray-color);
-}
-.hero-foot {
-  background-color: var(--main-color);
 }
 
 </style>

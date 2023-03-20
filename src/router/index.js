@@ -4,14 +4,34 @@ import {useBasicStore} from "@/stores/basicStore";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { top: 0 }
+    }
+  },
   routes: [
     {
       path: '/',
-      name: 'home',
-      meta: {
-        class: 'home',
-      },
-      component: HomeView
+      children: [
+        {
+          path: '',
+          name: 'home',
+          meta: {
+            class: 'home',
+          },
+          component: HomeView,
+        },
+        {
+          path: 'home/detail',
+          name: 'homeDetails',
+          meta: {
+            class: 'homeDetails',
+          },
+          component: () => import('../views/home/HomeDetailsView.vue')
+        }
+      ]
     },
     {
       path: '/user',
@@ -24,7 +44,7 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/user/UserView.vue')
     }
-  ]
+  ],
 })
 
 router.beforeEach((to, from) => {
@@ -35,15 +55,11 @@ router.beforeEach((to, from) => {
   } else if (to.meta.class === 'user') {
     basicStroe.tabBar = 'user'
     basicStroe.dismissBar('navigationBar')
+  } else if (to.meta.class === 'homeDetails') {
+    basicStroe.tabBar = 'home'
+    basicStroe.dismissBar('')
   } else {
     basicStroe.setDefaultBars()
-  }
-
-  var root = document.getElementsByTagName( 'html' )[0];
-  if (basicStroe.showNavigationBar === true) {
-    root.classList.add('has-navbar-fixed-top')
-  } else {
-    root.classList.remove('has-navbar-fixed-top')
   }
 
 })

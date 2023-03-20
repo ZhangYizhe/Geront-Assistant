@@ -1,8 +1,12 @@
 :root {
-    --main-color:#FCBE16;
+    --main-color: #FCBE16;
     --main-gray-color:#FAFAFA;
 }
 
-body {
-    padding-bottom: env(safe-area-inset-bottom);
+a {
+    color: black;
+}
+
+a:hover {
+    color: black !important;
 }

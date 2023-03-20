@@ -1,5 +1,4 @@
 <template>
-
   <div class="container">
     <div class="columns is-mobile m-0 is-vcentered" style="height: 100%">
       <template v-for="item in items">
@@ -56,7 +55,12 @@ export default {
 
 <style scoped>
 .container {
-  height: 70px;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  height: 90px;
+  padding-bottom: 20px;
+  background-color: var(--main-color);
 }
 
 .column {
