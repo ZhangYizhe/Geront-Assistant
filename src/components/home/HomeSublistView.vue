@@ -20,9 +20,7 @@
                       <p>{{item.title}}</p>
                     </div>
                     <div class="column is-narrow">
-                      <router-link :to="{name: 'homeDetails'}">
-                        <div class="detail-btn">詳情</div>
-                      </router-link>
+                        <div class="detail-btn" @touchstart="detailsBtnTap"><span>詳情</span></div>
                     </div>
                   </div>
                 </div>
@@ -46,9 +44,7 @@
                   <p>{{item.title}}</p>
                 </div>
                 <div class="column is-narrow">
-                  <router-link :to="{name: 'homeDetails'}">
-                    <div class="detail-btn">詳情</div>
-                  </router-link>
+                    <div class="detail-btn" @touchstart="detailsBtnTap">詳情</div>
                 </div>
               </div>
             </div>
@@ -72,7 +68,12 @@ export default {
     Pagination,
     Navigation,
   },
-  props: ['data']
+  props: ['data'],
+  methods: {
+    detailsBtnTap() {
+      this.$router.push({name: 'homeDetails'})
+    }
+  }
 }
 </script>
 

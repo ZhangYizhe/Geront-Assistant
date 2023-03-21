@@ -1,5 +1,5 @@
 <template>
-  <carousel class="carousel" :itemsToShow="1.1" :wrapAround="true" :transition="500">
+  <carousel class="carousel" :itemsToShow="1.1" :wrapAround="true" :transition="500" :autoplay="5000">
     <slide v-for="slide in data" :key="slide">
       <div class="carousel-item">
         <img :src="slide.cover" alt="cover">
@@ -9,7 +9,7 @@
               <p style="text-align: left; max-lines: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{slide.title}}</p>
             </div>
             <div class="column is-narrow">
-              <div class="carousel-btn">詳情</div>
+              <div class="carousel-btn" @touchstart="detailsBtnTap">詳情</div>
             </div>
           </div>
         </div>
@@ -33,7 +33,12 @@ export default {
     Pagination,
     Navigation,
   },
-  props: ['data']
+  props: ['data'],
+  methods: {
+    detailsBtnTap() {
+      this.$router.push({name: 'homeDetails'})
+    }
+  }
 }
 </script>
 
