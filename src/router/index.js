@@ -1,67 +1,69 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import {useBasicStore} from "@/stores/basicStore";
+import NavigationBar from "@/components/basic/NavigationBar.vue";
+import TabBar from "@/components/basic/TabBar.vue";
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  scrollBehavior(to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition
-    } else {
-      return { top: 0 }
-    }
-  },
-  routes: [
-    {
-      path: '/',
-      children: [
+    history: createWebHistory(import.meta.env.BASE_URL),
+    scrollBehavior(to, from, savedPosition) {
+        if (savedPosition) {
+            return savedPosition
+        } else {
+            return {top: 0}
+        }
+    },
+    routes: [
         {
-          path: '',
-          name: 'home',
-          meta: {
-            class: 'home',
-          },
-          component: HomeView,
+            path: '/',
+            children: [
+                {
+                    path: '',
+                    name: 'home',
+                    meta: {
+                        tabBar: 'home',
+                        title: 'Home',
+                        showBackBtn: false,
+                    },
+                    components: {
+                        default: HomeView,
+                        navigationBar: NavigationBar,
+                        tabBar: TabBar,
+                    }
+                },
+                {
+                    path: 'home/detail',
+                    name: 'homeDetails',
+                    meta: {
+                        tabBar: 'homeDetails',
+                        title: 'Details',
+                        showBackBtn: true,
+                    },
+                    components: {
+                        default: import('../views/home/HomeDetailsView.vue'),
+                        navigationBar: NavigationBar,
+                        // tabBar: TabBar,
+                    }
+                }
+            ]
         },
         {
-          path: 'home/detail',
-          name: 'homeDetails',
-          meta: {
-            class: 'homeDetails',
-          },
-          component: () => import('../views/home/HomeDetailsView.vue')
+            path: '/user',
+            name: 'user',
+            meta: {
+                tabBar: 'user',
+            },
+            components: {
+                default: () => import('../views/user/UserView.vue'),
+                tabBar: TabBar,
+            }
         }
-      ]
-    },
-    {
-      path: '/user',
-      name: 'user',
-      meta: {
-        class: 'user',
-      },
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/user/UserView.vue')
-    }
-  ],
+    ],
 })
 
 router.beforeEach((to, from) => {
-  const basicStroe = useBasicStore();
-  if (to.meta.class === 'home') {
-    basicStroe.tabBar = 'home'
-    basicStroe.setDefaultBars()
-  } else if (to.meta.class === 'user') {
-    basicStroe.tabBar = 'user'
-    basicStroe.dismissBar('navigationBar')
-  } else if (to.meta.class === 'homeDetails') {
-    basicStroe.tabBar = 'home'
-    basicStroe.dismissBar('')
-  } else {
-    basicStroe.setDefaultBars()
-  }
-
+    const basicStroe = useBasicStore();
+    basicStroe.tabBar = to.meta.tabBar;
 })
 
 export default router

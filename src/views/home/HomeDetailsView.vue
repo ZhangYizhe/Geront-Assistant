@@ -1,7 +1,5 @@
 <template>
-<button @click="this.$router.go(-1)">
-  Back
-</button>
+123
 </template>
 
 <script>

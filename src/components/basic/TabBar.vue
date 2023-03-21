@@ -55,9 +55,10 @@ export default {
 
 <style scoped>
 .container {
-  position: sticky;
-  bottom: 0;
+  position: fixed;
   left: 0;
+  right: 0;
+  bottom: 0;
   height: 90px;
   padding-bottom: 20px;
   background-color: var(--main-color);

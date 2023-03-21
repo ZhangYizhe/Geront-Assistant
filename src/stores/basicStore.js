@@ -8,28 +8,11 @@ export const useBasicStore = defineStore('basic', {
     state: () => ({
         navigationBar: 'home',
         tabBar: 'home',
-        showNavigationBar: true,
-        showTabBar: true,
     }),
     getters: {
 
     },
     actions: {
-        setDefaultBars() {
-            this.showNavigationBar = true;
-            this.showTabBar = true;
-        },
-        dismissBar(name) {
-            if (name === 'navigationBar') {
-                this.showNavigationBar = false;
-                this.showTabBar = true;
-            } else if (name === 'tabBar') {
-                this.showNavigationBar = true;
-                this.showTabBar = false;
-            } else {
-                this.showNavigationBar = false;
-                this.showTabBar = false;
-            }
-        }
+
     }
 })

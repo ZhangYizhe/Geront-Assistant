@@ -1,37 +1,25 @@
 <template>
-  <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
-    <div class="container">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="/">
-          <img src="/pwa-192x192.png" alt="" style="border-radius: 5px; height: 60%">
-          <p class="header-title pl-2" style="font-size: 1.2rem">
-            Geront Assistant
-          </p>
-        </a>
-
-        <a role="button" :class="['navbar-burger', showList ? 'is-active' : '']" aria-label="menu" aria-expanded="false"
-           data-target="navbarBasicExample" @click="showList = !showList">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-      </div>
-
-      <div id="navbarBasicExample" :class="['navbar-menu', showList ? 'is-active' : '']">
-        <div class="navbar-start">
-          <a :class="['navbar-item', basicStore.navigationBar === 'home' ? 'is-active' : '']">
-            Home
-          </a>
+  <div class="nb-canvas">
+    <div class="columns is-mobile is-gapless is-vcentered">
+      <div class="header-btn column is-narrow has-text-centered mx-3">
+        <div class="header-btn">
+          <template v-if="this.$route.meta.showBackBtn">
+            <a @click="this.$router.go(-1)">
+              Back
+            </a>
+          </template>
         </div>
+      </div>
+      <div class="column header-title has-text-centered">
+        {{ this.$route.meta.title }}
+      </div>
+      <div class="column is-narrow has-text-centered mx-3">
+        <div class="header-btn">
 
-        <!--      <div class="navbar-end">-->
-        <!--        <div class="navbar-item">-->
-        <!--          -->
-        <!--        </div>-->
-        <!--      </div>-->
+        </div>
       </div>
     </div>
-  </nav>
+  </div>
 </template>
 
 <script>
@@ -42,28 +30,37 @@ export default {
   data() {
     return {
       showList: false,
-      basicStore: useBasicStore()
+      basicStore: useBasicStore(),
     }
   },
 }
 </script>
 
 <style scoped>
-.navbar {
+.nb-canvas {
   position: sticky;
   top: 0;
   left: 0;
+  height: 60px;
+  background-color: white;
+
+  box-shadow: 0 0 4px #dadada;
+  z-index: 1000;
 }
+
+.nb-canvas .columns {
+  height: 100%;
+}
+
 .header-title {
   font-weight: bold;
+  font-size: 1.25rem;
+
+  overflow: hidden;
 }
 
-.navbar-burger:hover {
-  background-color: white;
-}
-
-.navbar-item.is-active {
-  color: var(--main-color);
-  font-weight: bold;
+.header-btn {
+  width: 50px;
+  overflow: hidden;
 }
 </style>

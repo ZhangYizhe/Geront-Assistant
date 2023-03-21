@@ -128,6 +128,10 @@ export default {
 </script>
 
 <style scoped>
+.main-canvas  {
+  background-color: var(--main-gray-color);
+}
+
 .item-card-description {
   font-weight: bold;
   overflow: hidden;
