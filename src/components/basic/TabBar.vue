@@ -41,11 +41,11 @@ export default {
         },
         {
           id: 1,
-          name: 'user',
-          title: 'User',
-          icon: '<ion-icon class="icon" name="person-outline"></ion-icon>',
-          fillIcon: '<ion-icon class="icon" name="person"></ion-icon>',
-          route: 'user',
+          name: 'search',
+          title: 'Search',
+          icon: '<ion-icon class="icon" name="search-outline"></ion-icon>',
+          fillIcon: '<ion-icon class="icon" name="search"></ion-icon>',
+          route: 'search',
         }
       ]
     }

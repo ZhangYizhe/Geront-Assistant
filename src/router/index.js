@@ -48,13 +48,16 @@ const router = createRouter({
             ]
         },
         {
-            path: '/user',
-            name: 'user',
+            path: '/search',
+            name: 'search',
             meta: {
-                tabBar: 'user',
+                tabBar: 'search',
+                title: 'Search',
+                showBackBtn: false,
             },
             components: {
-                default: () => import('../views/user/UserView.vue'),
+                default: () => import('../views/search/SearchView.vue'),
+                navigationBar: NavigationBar,
                 tabBar: TabBar,
             }
         }

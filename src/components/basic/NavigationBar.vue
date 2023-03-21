@@ -5,7 +5,14 @@
         <div class="header-btn">
           <template v-if="this.$route.meta.showBackBtn">
             <a @click="this.$router.go(-1)">
-              Back
+              <div class="columns is-mobile is-gapless is-vcentered">
+                <div class="column is-narrow" style="margin-top: 8px">
+                  <ion-icon name="chevron-back-outline" style="font-size: 20px"></ion-icon>
+                </div>
+                <div class="column is-narrow">
+                  <span style="font-size: 18px">Back</span>
+                </div>
+              </div>
             </a>
           </template>
         </div>
@@ -60,7 +67,7 @@ export default {
 }
 
 .header-btn {
-  width: 50px;
+  width: 75px;
   overflow: hidden;
 }
 </style>
