@@ -29,7 +29,7 @@ const router = createRouter({
                         default: HomeView,
                         navigationBar: NavigationBar,
                         tabBar: TabBar,
-                    }
+                    },
                 },
                 {
                     path: 'home/detail',
@@ -40,7 +40,7 @@ const router = createRouter({
                         showBackBtn: true,
                     },
                     components: {
-                        default: import('../views/home/HomeDetailsView.vue'),
+                        default: () => import('../views/home/HomeDetailsView.vue'),
                         navigationBar: NavigationBar,
                         // tabBar: TabBar,
                     }
@@ -67,6 +67,16 @@ const router = createRouter({
 router.beforeEach((to, from) => {
     const basicStroe = useBasicStore();
     basicStroe.tabBar = to.meta.tabBar;
+})
+
+router.afterEach((to, from) => {
+    const toDepth = to.path.split('/').length
+    const fromDepth = from.path.split('/').length
+    if (toDepth === fromDepth) {
+
+    } else {
+        to.meta.transition = toDepth < fromDepth ? 'slide-right' : 'slide-left'
+    }
 })
 
 export default router

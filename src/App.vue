@@ -6,7 +6,11 @@ import { RouterView } from 'vue-router'
   <router-view name="navigationBar" />
 
   <div class="app-main-canvas">
-    <router-view />
+    <router-view v-slot="{ Component, route }">
+      <transition :name="route.meta.transition" mode="out-in">
+        <component :is="Component" />
+      </transition>
+    </router-view>
   </div>
 
   <router-view name="tabBar" />
