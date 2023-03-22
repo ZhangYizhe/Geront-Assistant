@@ -1,6 +1,19 @@
 :root {
     --main-color: #FCBE16;
     --main-gray-color:#FAFAFA;
+
+    --vc-nav-background: white;
+    --vc-nav-color: black;
+}
+
+.carousel__prev, .carousel__next {
+    border-radius: 50%;
+    /*padding: 5px;*/
+    box-shadow: 0 0 5px #6b6b6b;
+}
+
+.carousel__next--disabled, .carousel__prev--disabled {
+    opacity: 0;
 }
 
 a {

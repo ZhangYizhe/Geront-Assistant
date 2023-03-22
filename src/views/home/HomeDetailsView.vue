@@ -1,10 +1,12 @@
 <template>
-Developing
+
+
 </template>
 
 <script>
+
 export default {
-  name: "HomeDetailsView"
+  name: "HomeDetailsView",
 }
 </script>
 

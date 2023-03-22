@@ -1,24 +1,26 @@
 <template>
-  <carousel class="carousel" :itemsToShow="1.1" :wrapAround="true" :transition="500" :autoplay="5000">
+  <carousel class="carousel" :itemsToShow="1.1" :wrapAround="true" :transition="500" :autoplay="5000" :touchDrag="false">
     <slide v-for="slide in data" :key="slide">
       <div class="carousel-item">
         <img :src="slide.cover" alt="cover">
         <div class="carousel-content">
           <div class="columns is-mobile is-vcentered">
             <div class="column" style="overflow: hidden;">
-              <p style="text-align: left; max-lines: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{slide.title}}</p>
+              <p class="carousel-title">{{slide.title}}</p>
             </div>
             <div class="column is-narrow">
-              <div class="carousel-btn" @touchstart="detailsBtnTap">詳情</div>
+              <router-link :to="{name: 'homeDetails'}">
+                <div class="carousel-btn">詳情</div>
+              </router-link>
             </div>
           </div>
         </div>
       </div>
     </slide>
-<!--    <template #addons>-->
-<!--      <navigation />-->
+    <template #addons>
+      <navigation />
 <!--      <pagination />-->
-<!--    </template>-->
+    </template>
   </carousel>
 </template>
 
@@ -36,7 +38,7 @@ export default {
   props: ['data'],
   methods: {
     detailsBtnTap() {
-      this.$router.push({name: 'homeDetails'})
+      this.$router.push()
     }
   }
 }
@@ -68,6 +70,7 @@ export default {
   width: 100%;
   height: 100%;
 }
+
 .carousel-content {
   position: absolute;
   bottom: 0;
@@ -78,11 +81,23 @@ export default {
   color: white;
 }
 
+.carousel-title {
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-align: left;
+}
+
 .carousel-btn {
   padding: 5px 10px 5px 10px;
   font-size: 0.9rem;
   font-weight: bold;
   border-radius: 10px;
+  color: white;
   background-color: rgba(0, 0, 0, 0.62);
 }
 

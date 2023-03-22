@@ -23,32 +23,25 @@ export default {
       carouselData: [
         {
           id: 0,
-          title: '八達通乘車優惠計劃',
+          title: '「智方便」2023年消費券計劃 - 查詢登記紀錄',
           description: '456',
           link: '',
-          cover: 'https://picsum.photos/id/100/500/500',
+          cover: 'https://s2.loli.net/2023/03/22/QUPuyfgWhnJFlLE.jpg',
         },
         {
           id: 1,
-          title: '如何註冊「智方便」',
+          title: '八達通乘車優惠計劃',
           description: '456',
           link: '',
-          cover: 'https://picsum.photos/id/948/500/500',
+          cover: 'https://s2.loli.net/2023/03/22/DqNKZ56vd9SJTHj.jpg',
         },
         {
           id: 2,
           title: '「e通道」帶您快捷通關',
           description: '456',
           link: '',
-          cover: 'https://picsum.photos/id/237/500/500',
+          cover: 'https://s2.loli.net/2023/03/22/gJsnHVQ5O8YIDzw.jpg',
         },
-        {
-          id: 3,
-          title: '如何使用Facebook發布帖子',
-          description: '456',
-          link: '',
-          cover: 'https://picsum.photos/id/48/500/500',
-        }
       ],
       sections: [
         {

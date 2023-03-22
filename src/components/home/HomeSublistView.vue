@@ -5,7 +5,7 @@
     </p>
 
     <template v-if="data.items.length > 1">
-      <carousel class="carousel" :itemsToShow="1.1" :wrapAround="false" :transition="500">
+      <carousel class="carousel" :itemsToShow="1.1" :wrapAround="false" :transition="500" :touchDrag="false">
         <slide v-for="slide in data.items" :key="slide">
           <div class="carousel-item">
             <div class="columns is-multiline is-gapless">
@@ -20,7 +20,9 @@
                       <p>{{item.title}}</p>
                     </div>
                     <div class="column is-narrow">
-                        <div class="detail-btn" @touchstart="detailsBtnTap"><span>詳情</span></div>
+                      <router-link :to="{name: 'homeDetails'}">
+                        <div class="detail-btn">詳情</div>
+                      </router-link>
                     </div>
                   </div>
                 </div>
@@ -28,6 +30,10 @@
             </div>
           </div>
         </slide>
+        <template #addons>
+          <navigation />
+          <!--      <pagination />-->
+        </template>
       </carousel>
     </template>
     <template v-else>
@@ -44,7 +50,9 @@
                   <p>{{item.title}}</p>
                 </div>
                 <div class="column is-narrow">
-                    <div class="detail-btn" @touchstart="detailsBtnTap">詳情</div>
+                  <router-link :to="{name: 'homeDetails'}">
+                    <div class="detail-btn">詳情</div>
+                  </router-link>
                 </div>
               </div>
             </div>
@@ -70,9 +78,6 @@ export default {
   },
   props: ['data'],
   methods: {
-    detailsBtnTap() {
-      this.$router.push({name: 'homeDetails'})
-    }
   }
 }
 </script>
@@ -96,8 +101,8 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2; /* number of lines to show */
-  line-clamp: 2;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  line-clamp: 1;
   -webkit-box-orient: vertical;
 }
 
