@@ -1,8 +1,6 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import {useBasicStore} from "@/stores/basicStore";
-import NavigationBar from "@/components/basic/NavigationBar.vue";
-import TabBar from "@/components/basic/TabBar.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,7 +8,7 @@ const router = createRouter({
         if (savedPosition) {
             return savedPosition
         } else {
-            return {top: 0}
+            return { left: 0, top: 0 }
         }
     },
     routes: [
@@ -25,11 +23,8 @@ const router = createRouter({
                         title: 'Home',
                         showBackBtn: false,
                     },
-                    components: {
-                        default: HomeView,
-                        navigationBar: NavigationBar,
-                        tabBar: TabBar,
-                    },
+
+                    component: HomeView,
                 },
                 {
                     path: 'home/detail',
@@ -39,11 +34,7 @@ const router = createRouter({
                         title: 'Details',
                         showBackBtn: true,
                     },
-                    components: {
-                        default: () => import('../views/home/HomeDetailsView.vue'),
-                        navigationBar: NavigationBar,
-                        // tabBar: TabBar,
-                    }
+                    component: () => import('../views/home/HomeDetailsView.vue'),
                 }
             ]
         },
@@ -55,11 +46,7 @@ const router = createRouter({
                 title: 'Search',
                 showBackBtn: false,
             },
-            components: {
-                default: () => import('../views/search/SearchView.vue'),
-                navigationBar: NavigationBar,
-                tabBar: TabBar,
-            }
+            component: () => import('../views/search/SearchView.vue'),
         }
     ],
 })
@@ -69,14 +56,12 @@ router.beforeEach((to, from) => {
     basicStroe.tabBar = to.meta.tabBar;
 })
 
-router.afterEach((to, from) => {
-    const toDepth = to.path.split('/').length
-    const fromDepth = from.path.split('/').length
-    if (toDepth === fromDepth) {
-
-    } else {
-        to.meta.transition = toDepth < fromDepth ? 'slide-right' : 'slide-left'
-    }
-})
+// router.afterEach((to, from) => {
+//     const toDepth = to.path.split('/').length
+//     const fromDepth = from.path.split('/').length
+//     if (toDepth !== fromDepth) {
+//         to.meta.transition = toDepth < fromDepth ? 'slide-right' : 'slide-left'
+//     }
+// })
 
 export default router

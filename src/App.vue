@@ -1,23 +1,17 @@
 <script setup>
-import { RouterView } from 'vue-router'
+
 </script>
 
 <template>
-  <router-view name="navigationBar" />
+<!--  <router-view v-slot="{ Component, route }">-->
+<!--    <transition :name="route.meta.transition" mode="out-in">-->
+<!--      <component :is="Component"/>-->
+<!--    </transition>-->
+<!--  </router-view>-->
 
-  <div class="app-main-canvas">
-    <router-view v-slot="{ Component, route }">
-      <transition :name="route.meta.transition" mode="out-in">
-        <component :is="Component" />
-      </transition>
-    </router-view>
-  </div>
-
-  <router-view name="tabBar" />
+  <router-view></router-view>
 </template>
 
 <style scoped>
-.app-main-canvas {
-  margin-bottom: 90px;
-}
+
 </style>

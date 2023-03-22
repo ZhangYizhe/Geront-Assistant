@@ -1,11 +1,17 @@
 <template>
-  <div class="container">
-    <section class="section p-0">
-      <HomeCarouselView :data="carouselData"/>
-    </section>
-    <template v-for="section in sections">
-      <HomeSublistView :data="section"/>
-    </template>
+  <div>
+    <NavigationBar />
+
+    <div class="app-main-canvas">
+      <section class="section p-0">
+        <HomeCarouselView :data="carouselData"/>
+      </section>
+      <template v-for="section in sections">
+        <HomeSublistView :data="section"/>
+      </template>
+    </div>
+
+    <TabBar />
   </div>
 </template>
 
@@ -13,10 +19,12 @@
 import {useBasicStore} from "@/stores/basicStore";
 import HomeCarouselView from "@/components/home/HomeCarouselView.vue";
 import HomeSublistView from "@/components/home/HomeSublistView.vue";
+import NavigationBar from "@/components/basic/NavigationBar.vue";
+import TabBar from "@/components/basic/TabBar.vue";
 
 export default {
   name: "HomeView",
-  components: {HomeSublistView, HomeCarouselView},
+  components: {TabBar, NavigationBar, HomeSublistView, HomeCarouselView},
   data() {
     return {
       basicStore: useBasicStore(),

@@ -7,6 +7,20 @@
     --vc-nav-color: black;
 }
 
+body {
+    /* Keyword values */
+    user-select: text;
+
+    /* Mozilla-specific values */
+    -moz-user-select: text;
+
+    /* WebKit-specific values */
+    -webkit-user-select: text;
+
+    /* Microsoft-specific values */
+    -ms-user-select: text;
+}
+
 .carousel__prev, .carousel__next {
     border-radius: 50%;
     /*padding: 5px;*/

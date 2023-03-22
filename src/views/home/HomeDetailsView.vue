@@ -1,35 +1,43 @@
 <template>
   <div>
-    <section class="section p-0">
-      <div class="columns is-multiline is-gapless">
-        <div class="column">
-          <img class="cover" :src="details.cover" alt="">
+    <NavigationBar/>
+    <div class="homeDetailsCanvas">
+      <section class="section p-0">
+        <div class="columns is-multiline is-gapless">
+          <div class="column">
+            <img class="cover" :src="details.cover" alt="">
+          </div>
+          <div class="column">
+            <p class="title is-5 py-3 px-5">{{ details.title }}</p>
+          </div>
         </div>
-        <div class="column">
-          <p class="title is-5 py-3 px-5">{{ details.title }}</p>
+      </section>
+      <section class="section py-2 px-5">
+        <div class="columns is-multiline is-gapless">
+          <div class="column description">
+            <p v-html="details.description"></p>
+          </div>
         </div>
-      </div>
-    </section>
-    <section class="section py-2 px-5">
-      <div class="columns is-multiline is-gapless">
-        <div class="column description">
-          <p v-html="details.description"></p>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <div class="footerEmptyView"></div>
+      <div class="footerEmptyView">
 
-    <button class="startBtn">
-      立即開始學習
-    </button>
+      </div>
+
+      <button class="startBtn">
+        立即開始學習
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
 
+import NavigationBar from "@/components/basic/NavigationBar.vue";
+
 export default {
   name: "HomeDetailsView",
+  components: {NavigationBar},
   data() {
     return {
       details: {
@@ -43,6 +51,10 @@ export default {
 </script>
 
 <style scoped>
+.homeDetailsCanvas {
+  margin-bottom: -90px;
+}
+
 .cover {
   overflow: hidden;
   width: 100%;
@@ -54,10 +66,11 @@ export default {
 }
 
 .footerEmptyView {
-  height: 20px;
+  height: 60px;
 }
 
 .startBtn {
+  color: black;
   font-size: 20px;
   font-weight: bold;
   width: 90%;
@@ -67,7 +80,7 @@ export default {
   border: none;
   box-shadow: 0 0 6px var(--main-color);
 
-  position: fixed;
+  position: sticky;
   bottom: 30px;
   left: 5%;
 }
