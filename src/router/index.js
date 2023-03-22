@@ -23,7 +23,6 @@ const router = createRouter({
                         title: 'Home',
                         showBackBtn: false,
                     },
-
                     component: HomeView,
                 },
                 {
@@ -47,6 +46,18 @@ const router = createRouter({
                 showBackBtn: false,
             },
             component: () => import('../views/search/SearchView.vue'),
+        },
+        {
+            path: '/simulator',
+            name: 'simulator',
+            component: () => import('../views/simulator/SimulatorView.vue'),
+            children: [
+                {
+                    path: 'iamSmart',
+                    name: 'simulator/iamSmart',
+                    component: () => import('../views/simulator/iamSmart/IAMSmartView.vue'),
+                }
+            ]
         }
     ],
 })
