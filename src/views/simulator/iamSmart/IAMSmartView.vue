@@ -1,24 +1,32 @@
 <template>
-<div class="container">
-  <Transition>
-    <template v-if="app.viewsIndex === 0">
-      <img v-if="app.viewsIndex === 0" class="cover" :src="app.cover" alt="">
-    </template>
-    <template v-else-if="app.viewsIndex === 1">
-      <IAMLoginView :loginBtnTap="loginBtnTap" />
-    </template>
-    <template v-else-if="app.viewsIndex === 2">
-      <IAMHomeView :scanBtnTap="scanBtnTap" :launchServiceBtnTap="launchServiceBtnTap" />
-    </template>
-    <template v-else-if="app.viewsIndex === 3">
-      <IAMScanView :homeBtnTap="homeBtnTap" />
-    </template>
-  </Transition>
+  <div class="container">
+    <template v-if="app">
+      <Transition>
+        <template v-if="app.viewsIndex === 0">
+          <img v-if="app.viewsIndex === 0" class="cover" :src="app.cover" alt="">
+        </template>
+        <template v-else-if="app.viewsIndex === 1">
+          <IAMLoginView :loginBtnTap="loginBtnTap"/>
+        </template>
+        <template v-else-if="app.viewsIndex === 2">
+          <IAMHomeView :scanBtnTap="scanBtnTap" :launchServiceBtnTap="launchServiceBtnTap"/>
+        </template>
+        <template v-else-if="app.viewsIndex === 3">
+          <IAMScanView :homeBtnTap="homeBtnTap"/>
+        </template>
+        <template v-else-if="app.viewsIndex === 4">
+          <IAMServiceView :homeBtnTap="homeBtnTap" :authorizationBtnTap="authorizationBtnTap"
+                          :serviceStage="app.serviceStage"/>
+        </template>
+        <template v-else-if="app.viewsIndex === 5">
+          <IAMAuthorizationView :homeBtnTap="homeBtnTap" :authorizationConfirmBtnTap="authorizationConfirmBtnTap"/>
+        </template>
+      </Transition>
 
-  <IAMAlertView v-if="app.alertView.display" :alertCancelBtnTap="alertCancelBtnTap" :alertConfirmBtnTap="alertConfirmBtnTap" />
-
-
-</div>
+      <IAMAlertView v-if="app.alertView.display" :alertCancelBtnTap="alertCancelBtnTap"
+                    :alertConfirmBtnTap="alertConfirmBtnTap"/>
+    </template>
+  </div>
 </template>
 
 <script>
@@ -26,31 +34,38 @@ import IAMLoginView from "@/views/simulator/iamSmart/IAMLoginView.vue";
 import IAMHomeView from "@/views/simulator/iamSmart/IAMHomeView.vue";
 import IAMScanView from "@/views/simulator/iamSmart/IAMScanView.vue";
 import IAMAlertView from "@/views/simulator/iamSmart/IAMAlertView.vue";
+import IAMServiceView from "@/views/simulator/iamSmart/IAMServiceView.vue";
+import IAMAuthorizationView from "@/views/simulator/iamSmart/IAMAuthorizationView.vue";
 
 export default {
   name: "iamSmartView",
-  components: {IAMAlertView, IAMScanView, IAMHomeView, IAMLoginView},
+  components: {IAMAuthorizationView, IAMServiceView, IAMAlertView, IAMScanView, IAMHomeView, IAMLoginView},
   data() {
     return {
-      app: {
-        cover: "https://raw.githubusercontent.com/ZhangYizhe/picgo/master/development/202303221414007.PNG",
-
-        viewsIndex: 0,
-
-        alertView: {
-          display: false
-        }
-      }
+      app: null
     }
   },
   mounted() {
+    this.initApp()
+
     setTimeout(() => {
       this.app.viewsIndex = 1
     }, 1000)
   },
   methods: {
+    initApp() {
+      this.app = {
+        cover: "https://raw.githubusercontent.com/ZhangYizhe/picgo/master/development/202303221414007.PNG",
+        viewsIndex: 0,
+        serviceStage: 0,
+        alertView: {
+          display: false
+        }
+      }
+    },
+
     loginBtnTap() {
-      this.homeBtnTap();
+      this.app.viewsIndex = 2;
     },
 
     launchServiceBtnTap() {
@@ -58,11 +73,25 @@ export default {
     },
 
     homeBtnTap() {
+      this.initApp();
       this.app.viewsIndex = 2
     },
 
     scanBtnTap() {
       this.app.viewsIndex = 3
+    },
+
+    serviceBtnTap() {
+      this.app.viewsIndex = 4
+    },
+
+    authorizationBtnTap() {
+      this.app.viewsIndex = 5
+    },
+
+    authorizationConfirmBtnTap() {
+      this.app.viewsIndex = 4
+      this.app.serviceStage = 1
     },
 
     alertCancelBtnTap() {
@@ -71,6 +100,7 @@ export default {
 
     alertConfirmBtnTap() {
       this.app.alertView.display = false;
+      this.serviceBtnTap();
     }
   }
 }

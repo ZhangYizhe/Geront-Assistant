@@ -31,7 +31,7 @@ export default {
 
 .navigationBar {
   background-color: transparent;
-  height: 50px;
+  height: 60px;
   position: sticky;
   top: 0;
   left: 0;
@@ -41,9 +41,8 @@ export default {
   font-size: 1.5rem;
   color: white;
   position: absolute;
-  height: 50px;
+  height: 60px;
   left: 20px;
-  top: 10px;
 }
 
 
