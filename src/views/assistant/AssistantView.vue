@@ -1,5 +1,6 @@
 <template>
-  <div :class="['assistant-parent-canvas', assistantStore.display ? 'assistant-parent-canvas-default-position': 'assistant-parent-canvas-hidden-position']">
+  <div
+      :class="['assistant-parent-canvas', assistantStore.display ? 'assistant-parent-canvas-default-position': 'assistant-parent-canvas-hidden-position']">
     <div class="assistant-canvas p-4">
       <div class="columns is-mobile is-gapless">
         <div class="column is-narrow">
@@ -7,14 +8,19 @@
             <img class="assistant-gif" src="@/assets/assistant/img/goat.gif" alt="">
           </div>
         </div>
-        <div :class="['column ml-3 assistant-messages',  assistantStore.display ? 'assistant-messages-default': 'assistant-messages-hidden']">
+        <div
+            :class="['column ml-3 assistant-messages',  assistantStore.display ? 'assistant-messages-default': 'assistant-messages-hidden']">
           <template v-if="assistantStore.display">
             <template v-for="message in assistantStore.messages">
               <div class="assistant-bubble px-3 py-3 mb-3" v-html="message"></div>
             </template>
 
-            <div class="button is-dark mb-3" @click="backToHome" v-if="!assistantStore.hiddenBackToHome">請幫我關閉這個應用！</div>
-            <div class="button is-danger mb-3" @click="hideHelpBtnTap" v-if="assistantStore.showHideHelp">請不要提示我，讓我自己試試！</div>
+            <div class="button is-dark mb-3" @click="backToHome" v-if="!assistantStore.hiddenBackToHome">
+              請幫我關閉這個應用！
+            </div>
+            <div class="button is-danger mb-3" @click="hideHelpBtnTap" v-if="assistantStore.showHideHelp">
+              請不要提示我，讓我自己試試！
+            </div>
             <div class="button is-link" @click="hiddenContentBtnTap">
               <template v-if="assistantStore.showHideHelp">
                 了解了
@@ -29,18 +35,32 @@
       </div>
     </div>
 
-    <div :class="['assistant-bg-canvas', assistantStore.display ? 'assistant-bg-canvas-default': 'assistant-bg-canvas-hidden']"> </div>
+    <div ref="assistantBgCanvas"
+         :class="['assistant-bg-canvas', assistantStore.display ? 'assistant-bg-canvas-default': 'assistant-bg-canvas-hidden']">
+      <canvas ref="confettiCanvas" style="width: 100%; height: 100%">
+
+      </canvas>
+    </div>
   </div>
 </template>
 
 <script>
 import {useAssistantStore} from "@/stores/assistantStore";
 import router from "@/router";
+import 'canvas-confetti/dist/confetti.browser'
+
 export default {
   name: "AssistantView",
   data() {
     return {
       assistantStore: useAssistantStore()
+    }
+  },
+  watch: {
+    'assistantStore.display'(newValue) {
+      if (newValue && this.assistantStore.showHideHelp === true) {
+        this.showConfetti();
+      }
     }
   },
   methods: {
@@ -65,8 +85,24 @@ export default {
       if (confirm('您確定要關閉當前虛擬應用嗎，您的所有操作將不會被存儲！')) {
         router.push({name: "home"})
       }
+    },
+
+    showConfetti() {
+      setTimeout(() => {
+        var myConfetti = confetti.create(this.$refs.confettiCanvas, {
+          resize: true,
+          useWorker: true
+        });
+        myConfetti({
+          particleCount: 100,
+          spread: 70,
+          origin: {y: 1},
+          // any other options from the global
+          // confetti function
+        });
+      }, 300)
     }
-  }
+  },
 }
 </script>
 
@@ -146,6 +182,7 @@ export default {
   transition-timing-function: ease-in-out;
   transition: opacity 0.3s, transform 0.3s;
   transform-origin: top left;
+  white-space: pre-line;
 }
 
 .assistant-messages-default {

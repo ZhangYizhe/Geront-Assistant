@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "bulma": "^0.9.4",
+    "canvas-confetti": "^1.6.0",
     "pinia": "^2.0.32",
     "vue": "^3.2.47",
     "vue-cookies": "^1.8.3",

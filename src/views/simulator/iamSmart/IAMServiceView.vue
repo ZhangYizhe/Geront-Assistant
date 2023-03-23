@@ -37,7 +37,7 @@ export default {
     } else if (this.serviceStage === 1) {
       this.useAssistantStore.setMessages([
         '現在，「智方便」應用程序將自動打開瀏覽器，並顯示查詢結果',
-        '🥳恭喜你！您已經完成了整個流程，如果您想在沒有我的幫助下再來一次，請點擊「再試一次」按鈕。',
+        '<span style="font-size: 1.3rem; font-weight: bold">🥳 恭 喜 你！ </span>\n您已經完成了整個流程，如果您想在沒有我的幫助下再來一次，請點擊「再試一次」按鈕。',
         '如果你需要我的提示，請隨時點擊我喔！',
       ], true, false, true)
     }
