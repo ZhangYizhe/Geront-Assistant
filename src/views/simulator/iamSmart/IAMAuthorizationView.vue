@@ -34,9 +34,24 @@
 </template>
 
 <script>
+import {useAssistantStore} from "@/stores/assistantStore";
+
 export default {
   name: "IAMAuthorizationView",
-  props: ['homeBtnTap', 'authorizationConfirmBtnTap']
+  props: ['homeBtnTap', 'authorizationConfirmBtnTap'],
+  data() {
+    return {
+      useAssistantStore: useAssistantStore()
+    }
+  },
+  mounted() {
+    this.useAssistantStore.setMessages([
+      '現在，「智方便」應用程式已經打開項目介紹頁面',
+      '如果您確定要通過「智方便」來「登陸」並「查詢」該項目內容，請點擊「繼續」按鈕',
+      '若您想中斷操作，請點擊「取消」按鈕',
+      '如果你需要我的提示，請隨時點擊我喔！',
+    ], true, false, false)
+  }
 }
 </script>
 

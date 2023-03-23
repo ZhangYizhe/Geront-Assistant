@@ -6,13 +6,23 @@
 </template>
 
 <script>
+import {useAssistantStore} from "@/stores/assistantStore";
+
 export default {
   name: "IAMLoginView",
   props: ['loginBtnTap'],
   data() {
     return {
+      useAssistantStore: useAssistantStore(),
       backgroundCover: "https://raw.githubusercontent.com/ZhangYizhe/picgo/master/development/202303221414007.PNG"
     }
+  },
+  mounted() {
+    this.useAssistantStore.setMessages([
+      '歡迎使用「智方便」應用程序',
+      '在該界面，你需要點擊「登入」按鈕來驗證身份，如果驗證成功，則會進入應用程式「主界面」',
+      '如果你需要我的提示，請隨時點擊我喔！',
+    ], true, false, false)
   }
 }
 </script>

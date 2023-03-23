@@ -32,8 +32,8 @@
 <script>
 import IAMLoginView from "@/views/simulator/iamSmart/IAMLoginView.vue";
 import IAMHomeView from "@/views/simulator/iamSmart/IAMHomeView.vue";
-import IAMScanView from "@/views/simulator/iamSmart/IAMScanView.vue";
-import IAMAlertView from "@/views/simulator/iamSmart/IAMAlertView.vue";
+import IAMScanView from "@/views/simulator/iamSmart/others/IAMScanView.vue";
+import IAMAlertView from "@/views/simulator/iamSmart/others/IAMAlertView.vue";
 import IAMServiceView from "@/views/simulator/iamSmart/IAMServiceView.vue";
 import IAMAuthorizationView from "@/views/simulator/iamSmart/IAMAuthorizationView.vue";
 

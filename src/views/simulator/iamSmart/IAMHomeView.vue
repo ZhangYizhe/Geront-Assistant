@@ -67,9 +67,9 @@
         <p style="font-size: 1.3rem; font-weight: bold">熱門網上服務</p>
       </div>
       <div class="column mt-4" v-for="item in hotServiceList">
-        <div class="hotServiceItem p-3" @click="launchServiceBtnTap">
+        <div class="hotServiceItem p-3">
           <div class="columns is-mobile">
-            <div class="column">
+            <div class="column" @click="clickOtherPlace">
               <div class="columns">
                 <div class="column">
                   <div class="title">
@@ -83,7 +83,7 @@
                 </div>
               </div>
             </div>
-            <div class="column is-narrow">
+            <div class="column is-narrow" @click="launchServiceBtnTap">
               <div class="details">
                 詳情
               </div>
@@ -109,11 +109,14 @@
 </template>
 
 <script>
+import {useAssistantStore} from "@/stores/assistantStore";
 export default {
   name: "IAMHomeView",
   props: ['scanBtnTap', 'launchServiceBtnTap'],
   data() {
     return {
+      useAssistantStore: useAssistantStore(),
+
       bannerImg: "https://raw.githubusercontent.com/ZhangYizhe/picgo/master/development/202303221435643.jpeg",
 
       hotServiceList: [
@@ -130,6 +133,21 @@ export default {
           source: "康樂及文化事務署",
         }
       ]
+    }
+  },
+  mounted() {
+    this.useAssistantStore.setMessages([
+      '現在你已成功登入「智方便」應用程式！',
+      '請向下滑動主列表，尋找<strong>「2023年消費券計劃 - 查詢登記記錄」</strong>項目',
+      '如果你需要我的提示，請隨時點擊我喔！',
+    ], true, false, false)
+  },
+  methods: {
+    clickOtherPlace() {
+      this.useAssistantStore.setMessages([
+        '當你找到<strong>「2023年消費券計劃 - 查詢登記記錄」</strong>項目後，請點擊最右側「詳情」按鈕',
+        '如果你需要我的提示，請隨時點擊我喔！',
+      ], true, false, false)
     }
   }
 }

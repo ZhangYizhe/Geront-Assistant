@@ -1,4 +1,12 @@
 <script setup>
+import AssistantView from "@/views/assistant/AssistantView.vue";
+
+// Set the first visit
+import {inject} from "vue";
+import {useAssistantStore} from "@/stores/assistantStore";
+const useAssistantStroe = useAssistantStore();
+const $cookies = inject('$cookies');
+useAssistantStroe.isFirstVisit = $cookies.get('isFirstVisit') !== null ? $cookies.get('isFirstVisit') : true
 
 </script>
 
@@ -10,6 +18,8 @@
 <!--  </router-view>-->
 
   <router-view></router-view>
+
+  <AssistantView />
 </template>
 
 <style scoped>

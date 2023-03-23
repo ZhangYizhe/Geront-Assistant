@@ -17,6 +17,7 @@
 
 <script>
 import {useBasicStore} from "@/stores/basicStore";
+import {useAssistantStore} from "@/stores/assistantStore";
 import HomeCarouselView from "@/components/home/HomeCarouselView.vue";
 import HomeSublistView from "@/components/home/HomeSublistView.vue";
 import NavigationBar from "@/components/basic/NavigationBar.vue";
@@ -28,6 +29,7 @@ export default {
   data() {
     return {
       basicStore: useBasicStore(),
+      useAssistantStore: useAssistantStore(),
       carouselData: [
         {
           id: 0,
@@ -122,6 +124,13 @@ export default {
   },
   mounted() {
 
+    this.useAssistantStore.hideHelp = false;
+    this.useAssistantStore.setMessages([
+      '你好，我的名字叫做安頌，謝謝你訪問我的主頁，我可以幫助你學習如何使用各類政府應用程序，請不要猶豫，點擊試試吧！',
+      '如果你需要我的提示，請隨時點擊我喔！',
+    ], this.useAssistantStore.isFirstVisit, true, false)
+
+    this.useAssistantStore.firstVisit();
   }
 }
 </script>

@@ -33,9 +33,24 @@
 </template>
 
 <script>
+import {useAssistantStore} from "@/stores/assistantStore";
+
 export default {
   name: "IAMAlertView",
-  props: ['alertCancelBtnTap', 'alertConfirmBtnTap']
+  props: ['alertCancelBtnTap', 'alertConfirmBtnTap'],
+  data() {
+    return {
+      useAssistantStore: useAssistantStore()
+    }
+  },
+  mounted() {
+    this.useAssistantStore.setMessages([
+      '由於您第一次打開該項目，手機操作系統需要確認您是否同意「智方便」打開授權頁面。',
+      '如果您同意，請點擊<strong>「Continue」</strong>按鈕，「智方便」將跳轉到「瀏覽器」中獲取授權。',
+      '如果您不同意，請點擊<strong>「Cancel」</strong>按鈕，中斷操作',
+      '如果你需要我的提示，請隨時點擊我喔！',
+    ], true, false, false)
+  },
 }
 </script>
 

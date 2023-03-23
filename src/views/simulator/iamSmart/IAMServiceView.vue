@@ -16,9 +16,32 @@
 </template>
 
 <script>
+import {useAssistantStore} from "@/stores/assistantStore";
+
 export default {
   name: "IAMServiceView",
-  props: ['homeBtnTap', 'authorizationBtnTap', 'serviceStage']
+  props: ['homeBtnTap', 'authorizationBtnTap', 'serviceStage'],
+  data() {
+    return {
+      useAssistantStore: useAssistantStore()
+    }
+  },
+  mounted() {
+    if (this.serviceStage === 0) {
+      this.useAssistantStore.setMessages([
+        '現在，「智方便」應用程式已經跳轉到「瀏覽器」中',
+        '「瀏覽器」會自動加載授權頁面，並詢問您使用「本機」或「另一部手機」來完成授權。',
+        '請您在該界面點擊「開啟智方便 >」按鈕，完成授權。',
+        '如果你需要我的提示，請隨時點擊我喔！',
+      ], true, false, false)
+    } else if (this.serviceStage === 1) {
+      this.useAssistantStore.setMessages([
+        '現在，「智方便」應用程序將自動打開瀏覽器，並顯示查詢結果',
+        '🥳恭喜你！您已經完成了整個流程，如果您想在沒有我的幫助下再來一次，請點擊「再試一次」按鈕。',
+        '如果你需要我的提示，請隨時點擊我喔！',
+      ], true, false, true)
+    }
+  }
 }
 </script>
 

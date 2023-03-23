@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="tabBar-canvas">
     <div class="columns is-mobile m-0 is-vcentered" style="height: 100%">
       <template v-for="item in items">
         <div class="column p-0">
@@ -54,7 +54,7 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.tabBar-canvas {
   position: fixed;
   left: 0;
   right: 0;

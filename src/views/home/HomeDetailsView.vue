@@ -36,12 +36,14 @@
 <script>
 
 import NavigationBar from "@/components/basic/NavigationBar.vue";
+import {useAssistantStore} from "@/stores/assistantStore";
 
 export default {
   name: "HomeDetailsView",
   components: {NavigationBar},
   data() {
     return {
+      useAssistantStore: useAssistantStore(),
       details: {
         title: "「智方便」2023年消費券計劃 - 查詢登記紀錄",
         cover: "https://raw.githubusercontent.com/ZhangYizhe/picgo/master/development/202303221135060.jpg",
@@ -49,6 +51,13 @@ export default {
         path: "simulator/iamSmart",
       }
     }
+  },
+  mounted() {
+    this.useAssistantStore.setMessages([
+      '這門課程的目的是幫助你了解如何通過「智方便」應用程式來查詢2023年消費券計劃的登記情況。',
+      '你可以試試點擊底部「立即開始學習」按鈕來打開「智方便」模擬程序。',
+      '如果你需要我的提示，請隨時點擊我喔！',
+    ], true, true, false)
   }
 }
 </script>
