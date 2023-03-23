@@ -46,6 +46,14 @@ export default {
           icon: '<ion-icon class="icon" name="search-outline"></ion-icon>',
           fillIcon: '<ion-icon class="icon" name="search"></ion-icon>',
           route: 'search',
+        },
+        {
+          id: 1,
+          name: 'setting',
+          title: 'Setting',
+          icon: '<ion-icon class="icon" name="settings-outline"></ion-icon>',
+          fillIcon: '<ion-icon class="icon" name="settings"></ion-icon>',
+          route: 'setting',
         }
       ]
     }

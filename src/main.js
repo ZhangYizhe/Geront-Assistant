@@ -12,6 +12,8 @@ const pinia = createPinia()
 const app = createApp(App)
 
 app.use(VueCookies, { expires: '30d'})
+
+
 app.use(pinia)
 app.use(router)
 

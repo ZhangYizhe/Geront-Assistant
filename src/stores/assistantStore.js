@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
-import {inject} from "vue";
 
 export const useAssistantStore = defineStore('assistant', {
     state: () => ({
+        cookies: null,
         display: false,
         hiddenBackToHome: true,
         showHideHelp: false,
@@ -14,10 +14,9 @@ export const useAssistantStore = defineStore('assistant', {
 
     },
     actions: {
-        firstVisit() {
-            const $cookies = inject('$cookies');
-            $cookies.set('isFirstVisit', false);
-            this.isFirstVisit = false;
+        firstVisit(isTrue) {
+            this.cookies.set('isFirstVisit', isTrue);
+            this.isFirstVisit = isTrue;
         },
 
         setMessages(messages, display, hiddenBackToHome, showHideHelp) {

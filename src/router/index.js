@@ -58,7 +58,17 @@ const router = createRouter({
                     component: () => import('../views/simulator/iamSmart/IAMSmartView.vue'),
                 }
             ]
-        }
+        },
+        {
+            path: '/setting',
+            name: 'setting',
+            meta: {
+                tabBar: 'setting',
+                title: 'Setting',
+                showBackBtn: false,
+            },
+            component: () => import('../views/setting/SettingView.vue'),
+        },
     ],
 })
 

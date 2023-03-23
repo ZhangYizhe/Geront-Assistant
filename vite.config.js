@@ -25,8 +25,8 @@ export default defineConfig({
             },
             includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
             manifest: {
-                name: 'Geront Assistant',
-                short_name: 'GerontAssistant',
+                name: '樂齡助手',
+                short_name: '樂齡助手',
                 description: 'This application aims to give an opportunity to the elderly for learning how to use modern technologies',
                 theme_color: '#FCBE16',
                 icons: [

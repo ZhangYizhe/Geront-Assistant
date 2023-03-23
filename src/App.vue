@@ -6,7 +6,14 @@ import {inject} from "vue";
 import {useAssistantStore} from "@/stores/assistantStore";
 const useAssistantStroe = useAssistantStore();
 const $cookies = inject('$cookies');
-useAssistantStroe.isFirstVisit = $cookies.get('isFirstVisit') !== null ? $cookies.get('isFirstVisit') : true
+
+useAssistantStroe.cookies = $cookies;
+if ($cookies.get('isFirstVisit') !== null) {
+  useAssistantStroe.isFirstVisit = $cookies.get('isFirstVisit') === 'true';
+} else {
+  useAssistantStroe.isFirstVisit = true
+}
+
 
 </script>
 

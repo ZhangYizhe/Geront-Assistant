@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NavigationBar />
+    <NavigationBar/>
 
     <div class="app-main-canvas">
       <section class="section p-0">
@@ -11,7 +11,7 @@
       </template>
     </div>
 
-    <TabBar />
+    <TabBar/>
   </div>
 </template>
 
@@ -122,16 +122,33 @@ export default {
       ]
     }
   },
+  computed: {
+    isRunningStandalone() {
+      return (window.matchMedia('(display-mode: standalone)').matches);
+    }
+  },
   mounted() {
 
-    this.useAssistantStore.hideHelp = false;
-    this.useAssistantStore.setMessages([
-      '你好，我的名字叫做安頌，謝謝你訪問我的主頁，我可以幫助你學習如何使用各類政府應用程序，請不要猶豫，點擊試試吧！',
-      '如果你需要我的提示，請隨時點擊我喔！',
-    ], this.useAssistantStore.isFirstVisit, true, false)
+    let messages = []
 
-    this.useAssistantStore.firstVisit();
-  }
+    if (this.isRunningStandalone) {
+      messages = [
+        '你好，我的名字叫做安頌，謝謝你訪問我的主頁，我可以幫助你學習如何使用各類政府應用程序，請不要猶豫，點擊試試吧！',
+        '如果你需要我的提示，請隨時點擊我喔！',
+      ]
+    } else {
+      messages = [
+        '你好，我的名字叫做安頌，謝謝你訪問我的主頁！',
+        '如果你想獲得完整體驗，請先點擊「瀏覽器」的「分享」按鈕，將我添加到桌面，這樣我就可以更好的為你服務啦！☺️',
+        '如果你需要我的提示，請隨時點擊我喔！',
+      ]
+    }
+
+    this.useAssistantStore.hideHelp = false;
+    this.useAssistantStore.setMessages(messages, this.useAssistantStore.isFirstVisit, true, false)
+
+    this.useAssistantStore.firstVisit(false);
+  },
 }
 </script>
 
