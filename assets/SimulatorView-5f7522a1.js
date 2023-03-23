@@ -1,0 +1,1 @@
+import{_ as o,r,o as t,i as n}from"./index-322d1881.js";const s={name:"SimulatorView"};function a(c,_,i,p,m,u){const e=r("router-view");return t(),n(e)}const l=o(s,[["render",a]]);export{l as default};
